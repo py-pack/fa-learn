@@ -12,28 +12,19 @@ app.include_router(user_router, tags=["Users"])
 
 @app.get("/")
 def hello_index():
-    return {
-        "message": "Hello index!"
-    }
+    return {"message": "Hello index!"}
 
 
 @app.get("/hello/")
-def hello(name: str = 'Suren'):
+def hello(name: str = "Suren"):
     name = name.strip().title()
-    return {
-        "message": f"Hello {name}"
-    }
-
+    return {"message": f"Hello {name}"}
 
 
 @app.post("/calc/add")
 def calc_add(a: int, b: int):
-    return {
-        "a": a,
-        "b": b,
-        "result": a + b
-    }
+    return {"a": a, "b": b, "result": a + b}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
