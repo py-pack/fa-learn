@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
 )
 
-from core.config import setting
+from core.config import settings
 
 
 class DatabaseHelper:
@@ -41,6 +41,6 @@ class DatabaseHelper:
 
 
 db_helper = DatabaseHelper(
-    url=setting.db_url,
-    echo=setting.db_echo,
+    url=settings.db.url,
+    echo=settings.db.echo,
 )

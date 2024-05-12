@@ -1,13 +1,19 @@
 from pathlib import Path
+from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
 BASE_DIR = str(Path(__file__).resolve().parent.parent)
 
 
-class Setting(BaseSettings):
+class DbSettings(BaseModel):
+    url: str = f"sqlite+aiosqlite:///{BASE_DIR}/db.sqlite3"
+    echo: bool = True
+
+
+class Settings(BaseSettings):
     base_dir: str = BASE_DIR
-    db_url: str = f"sqlite+aiosqlite:///{BASE_DIR}/db.sqlite3"
-    db_echo: bool = True
+
+    db: DbSettings = DbSettings()
 
 
-setting = Setting()
+settings = Settings()
